@@ -92,7 +92,13 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
+        //dd(count($taskStatus->task));
+        if (count($taskStatus->task) > 0) {
+            flash('Не удалось удалить статус')->error();
+            return redirect()->route('task_statuses.index');
+        }
         $taskStatus->delete();
+        flash('Статус удален')->success();
         return redirect()->route('task_statuses.index');
     }
 }

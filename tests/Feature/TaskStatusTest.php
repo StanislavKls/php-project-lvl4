@@ -3,16 +3,10 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Faker\Factory;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
-use Carbon\Carbon;
 use \App\Models\TaskStatus;
 
-class UrlTest extends TestCase
+class TaskStatusesTest extends TestCase
 {
-    private $id;   /* @phpstan-ignore-line */
-    private $name; /* @phpstan-ignore-line */
     /**
      * A basic feature test example.
      *
@@ -30,7 +24,6 @@ class UrlTest extends TestCase
         $status->name = 'test';
         $status->save();
         $this->id = $status->id;
-        Http::fake([$this->name => Http::response(['test'], 200, ['Headers'])]);
     }
     public function testIndex(): void
     {
