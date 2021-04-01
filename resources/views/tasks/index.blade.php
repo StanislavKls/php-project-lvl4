@@ -15,9 +15,47 @@
     </div>
 @endif
     <h1 class="mb-5">Задачи</h1>
+
+    <div class="d-flex">
+    <div>
+        {{Form::open(['method' => 'GET', 'class' => 'form-inline'])}}
+            <select class="form-control mr-2" name="filter[status_id]"><option value="">Статус</option>
+                @foreach ($statuses as $status)
+                    @if ($status->id == $currentStatus)
+                        <option selected="selected" value="{{ $status->id }}">{{ $status->name }}</option>
+                    @else
+                        <option value="{{ $status->id }}">{{ $status->name }}</option>
+                     @endif 
+                @endforeach
+            </select>
+
+            <select class="form-control mr-2" name="filter[created_by_id]"><option selected="selected" value="">Автор</option>
+                @foreach ($users as $user)
+                    @if ($user->id == $currentCreated)
+                        <option selected="selected" value="{{ $user->id }}">{{ $user->name }}</option>
+                    @else
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                     @endif 
+                @endforeach
+            </select>
+
+            <select class="form-control mr-2" name="filter[assigned_to_id]"><option selected="selected" value="">Исполнитель</option>
+            @foreach ($users as $user)
+                    @if ($user->id == $currentAssigned)
+                        <option selected="selected" value="{{ $user->id }}">{{ $user->name }}</option>
+                    @else
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                     @endif 
+                @endforeach
+            </select>
+            <input class="btn btn-outline-primary mr-2" type="submit" value="Применить">
+        {{Form::close()}}
+        </div>
     @auth
-    <a href="{{ route('tasks.create') }}" class="btn btn-primary">Создать задачу</a>    
+        <a href="{{ route('tasks.create') }}" class="btn btn-primary ml-auto">Создать задачу</a><br>  
     @endauth
+    </div>
+
     <table class="table mt-2">
         <thead>
             <tr>

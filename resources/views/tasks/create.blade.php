@@ -47,4 +47,5 @@
     </div>
     {{ Form::submit('Создать', ['class' => "btn btn-primary"]) }}
 {{ Form::close() }}
+
 @endsection

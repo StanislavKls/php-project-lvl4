@@ -3,31 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use Illuminate\Http\Request;
 use App\Models\TaskStatus;
 use App\Models\User;
 use App\Models\Label;
 use App\Http\Requests\TaskRequest;
-
-use function Php\Pairs\Data\Lists\l;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param  use Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::paginate();
-        return view('tasks.index', compact('tasks'));
+        $statuses        = TaskStatus::all();
+        $users           = User::all();
+        $filter          = $request->filter;
+        $currentStatus   = $filter ['status_id'] ?? '';
+        $currentCreated  = $filter ['created_by_id'] ?? '';
+        $currentAssigned = $filter ['assigned_to_id'] ?? '';
+        $tasks    = QueryBuilder::for(Task::class)
+                    ->allowedFilters([
+                        AllowedFilter::exact('status_id'),
+                        AllowedFilter::exact('created_by_id'),
+                        AllowedFilter::exact('assigned_to_id'),
+                    ])
+                    ->get();
+        
+        return view('tasks.index', compact('tasks', 'statuses', 'users', 'currentStatus', 'currentCreated', 'currentAssigned'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -41,8 +55,8 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  App\Http\Requests\TaskRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(TaskRequest $request)
     {
@@ -59,7 +73,7 @@ class TaskController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Task $task)
     {
@@ -70,22 +84,23 @@ class TaskController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Task $task)
     {
-        $statuses = TaskStatus::all();
-        $users    = User::all();
-        $labels   = Label::all();
-        return view('tasks.edit', compact('task', 'statuses', 'users', 'labels'));
+        $statuses     = TaskStatus::all();
+        $users        = User::all();
+        $labels       = Label::all();
+        $lablesOfTask = $task->labels->pluck('name');
+        return view('tasks.edit', compact('task', 'statuses', 'users', 'labels', 'lablesOfTask'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\TaskRequest  $request
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(TaskRequest $request, Task $task)
     {
@@ -101,7 +116,7 @@ class TaskController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Task $task)
     {

@@ -80,7 +80,7 @@ class TaskTest extends TestCase
                  'created_by_id' => $this->task->createdBy->id,
                  'assigned_to_id' => $this->task->assignedTo->id,
         ];
-        $response = $this->actingAs($user)->patch(route('tasks.update',$this->task), $data);
+        $response = $this->actingAs($user)->patch(route('tasks.update', $this->task), $data);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
 

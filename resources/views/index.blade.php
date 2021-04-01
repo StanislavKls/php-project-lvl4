@@ -14,4 +14,9 @@
     </div>
 @endif
 
+<div class="jumbotron">
+    <h1 class="display-4">Менеджер задач</h1>
+    <p class="lead">Заключительный проект курса от Hexlet по профессии PHP-программист.</p>
+</div>
+
 @endsection

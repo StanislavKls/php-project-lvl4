@@ -13,7 +13,7 @@
         @include('flash::message')
     </div>
 @endif
-<h1 class="mb-5">Создать задачу</h1>
+<h1 class="mb-5">Изменить задачу</h1>
 {{ Form::model($task, ['url' => route('tasks.update', $task), 'class' => 'w-50', 'method' => 'PATCH']) }}
     @csrf
     <div class="form-group">
@@ -41,11 +41,16 @@
         {{ Form::label('labels', 'Метки') }}
         <select multiple="multiple" class="form-control" id="labels" name="labels[]">
         @foreach ($labels as $label);
-            <option value="{{ $label->id }}">{{ $label->name }}</option>
+            @if ($lablesOfTask->contains($label->name))
+                <option selected="selected" value="{{ $label->id }}">{{ $label->name }}</option>
+            @else
+                <option value="{{ $label->id }}">{{ $label->name }}</option>
+            @endif 
         @endforeach
         </select>
     </div>
 
     {{ Form::submit('Сохранить', ['class' => "btn btn-primary"]) }}
 {{ Form::close() }}
+
 @endsection

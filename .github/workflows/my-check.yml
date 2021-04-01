@@ -19,3 +19,9 @@ jobs:
         with:
           php-version: '7.4'
           coverage: xdebug
+      - name: Setup
+        run: make setup
+      - name: Run Linter
+        run: make lint
+      - name: Run test
+        run: make test

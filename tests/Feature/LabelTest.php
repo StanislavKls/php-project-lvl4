@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use \App\Models\Label;
+use App\Models\Label;
 
 class LabelsTest extends TestCase
 {
