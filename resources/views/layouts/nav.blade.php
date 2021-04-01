@@ -16,6 +16,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('task_statuses.index') }}">Статусы</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('labels.index') }}">Метки</a>
+                </li>
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">

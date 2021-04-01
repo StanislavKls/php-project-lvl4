@@ -37,6 +37,13 @@
                 <option value="{{ $user->id }}">{{ $user->name }}</option>
             @endforeach
         </select>
+        
+        {{ Form::label('labels', 'Метки') }}
+        <select multiple="multiple" class="form-control" id="labels" name="labels[]">
+        @foreach ($labels as $label);
+            <option value="{{ $label->id }}">{{ $label->name }}</option>
+        @endforeach
+        </select>
     </div>
 
     {{ Form::submit('Сохранить', ['class' => "btn btn-primary"]) }}

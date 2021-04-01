@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\TaskStatus;
+use App\Models\Label;
 
 class Task extends Model
 {
@@ -21,5 +22,9 @@ class Task extends Model
     public function assignedTo()
     {
         return $this->belongsTo(User::class);
+    }
+    public function labels()
+    {
+        return $this->belongsToMany(Label::class, 'task_label', 'task_id', 'label_id');
     }
 }

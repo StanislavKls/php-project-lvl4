@@ -45,17 +45,17 @@ class TaskTest extends TestCase
         $response = $this->actingAs($user)->get(route('tasks.create'));
         $response->assertOk();
     }
-    public function testStore()
+    public function testStore(): void
     {
-        $user = User::factory()->create();
-        $response = $this->post(route('task_statuses.store', ['name' => 'test']));
+        $user      = User::factory()->create();
+        $response  = $this->post(route('task_statuses.store', ['name' => 'test']));
         $status_id = TaskStatus::first()->id;
-        $data = ['name' => 'test2',
-                 'description' => 'testtest',
-                 'status_id' => $status_id,
-                 'created_by_id' => $user->id,
-                 'assigned_to_id' => $user->id
-            ];
+        $data      = ['name' => 'test2',
+                      'description' => 'testtest',
+                      'status_id' => $status_id,
+                      'created_by_id' => $user->id,
+                      'assigned_to_id' => $user->id
+                    ];
         $response = $this->post(route('tasks.store'), $data);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
@@ -71,7 +71,7 @@ class TaskTest extends TestCase
         $response = $this->get(route('tasks.edit', $this->task->id));
         $response->assertOk();
     }
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $user = User::factory()->create();
         $data = ['name' => 'testNEW',
@@ -86,13 +86,12 @@ class TaskTest extends TestCase
 
         $this->assertDatabaseHas('tasks', $data);
     }
-    public function testDestroy()
+    public function testDestroy(): void
     {
-        $user = User::factory()->create();
+        $user     = User::factory()->create();
         $response = $this->actingAs($user)->delete(route('tasks.destroy', [$this->task]));
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
         $this->assertDatabaseMissing('tasks', ['id' => $this->task->id]);
     }
 }
-    

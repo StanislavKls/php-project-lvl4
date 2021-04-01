@@ -6,6 +6,7 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Models\TaskStatus;
 use App\Models\User;
+use App\Models\Label;
 use App\Http\Requests\TaskRequest;
 
 use function Php\Pairs\Data\Lists\l;
@@ -30,10 +31,11 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $task = new Task();
+        $task     = new Task();
         $statuses = TaskStatus::all();
-        $users = User::all();
-        return view('tasks.create', compact('task', 'statuses', 'users'));
+        $users    = User::all();
+        $labels   = Label::all();
+        return view('tasks.create', compact('task', 'statuses', 'users', 'labels'));
     }
 
     /**
@@ -48,6 +50,7 @@ class TaskController extends Controller
         $task = new Task();
         $task->fill($data);
         $task->save();
+        $task->labels()->sync($request->labels);
         flash('Задача добавлена!')->success();
         return redirect()->route('tasks.index');
     }
@@ -72,8 +75,9 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
         $statuses = TaskStatus::all();
-        $users = User::all();
-        return view('tasks.edit', compact('task', 'statuses', 'users'));
+        $users    = User::all();
+        $labels   = Label::all();
+        return view('tasks.edit', compact('task', 'statuses', 'users', 'labels'));
     }
 
     /**
@@ -88,6 +92,7 @@ class TaskController extends Controller
         $data = $request->validated();
         $task->fill($data);
         $task->save();
+        $task->labels()->sync($request->labels);
         flash('Задача изменена!')->success();
         return redirect()->route('tasks.index');
     }
