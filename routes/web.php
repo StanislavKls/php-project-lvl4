@@ -23,8 +23,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::resource('task_statuses', TaskStatusController::class);
 
 Route::resource('tasks', TaskController::class);
