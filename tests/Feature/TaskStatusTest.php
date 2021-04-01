@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\TaskStatus;
 
-class TaskStatusesTest extends TestCase
+class TaskStatusTest extends TestCase
 {
     /**
      * A basic feature test example.
