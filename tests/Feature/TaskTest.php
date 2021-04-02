@@ -9,6 +9,7 @@ use App\Models\User;
 
 class TaskTest extends TestCase
 {
+    private $task;
     /**
      * A basic feature test example.
      *
