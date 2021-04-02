@@ -11,6 +11,9 @@
                 <td>ID</td> <td>{{ $task->id }}</td> 
             </tr>
             <tr>
+                <td>Имя</td> <td>{{ $task->name }}</td> 
+            </tr>
+            <tr>
                 <td>Дата создания</td><td>{{ $task->created_at }}</td>
             </tr>
             <tr>
