@@ -9,7 +9,7 @@ use App\Models\User;
 
 class TaskTest extends TestCase
 {
-    private $task;
+    private $task;  /* @phpstan-ignore-line */
     /**
      * A basic feature test example.
      *
