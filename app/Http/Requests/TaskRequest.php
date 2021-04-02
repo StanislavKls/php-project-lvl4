@@ -31,10 +31,10 @@ class TaskRequest extends FormRequest
         ];
     }
     public function messages()
-{
-    return [
-        'name.required' => 'Имя не может быть пустым',
-        'status_id.required' => 'Статус не может быть пустым',
-    ];
-}
+    {
+        return [
+            'name.required' => 'Имя не может быть пустым',
+            'status_id.required' => 'Статус не может быть пустым',
+        ];
+    }
 }

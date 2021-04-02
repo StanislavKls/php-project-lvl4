@@ -53,10 +53,9 @@ class TaskTest extends TestCase
         $data      = ['name' => 'test2',
                       'description' => 'testtest',
                       'status_id' => $status_id,
-                      'created_by_id' => $user->id,
                       'assigned_to_id' => $user->id
                     ];
-        $response = $this->post(route('tasks.store'), $data);
+        $response = $this->actingAs($user)->post(route('tasks.store'), $data);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
         $this->assertDatabaseHas('tasks', $data);
