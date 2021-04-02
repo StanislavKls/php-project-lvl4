@@ -75,11 +75,12 @@ class TaskTest extends TestCase
         $user = User::factory()->create();
         $data = ['name' => 'testNEW',
                  'description' => 'testtest',
-                 'status_id' => $this->task->status->id,
+                 'status_id' => $this->task->status->id,                /* @phpstan-ignore-line */
                  'created_by_id' => $this->task->createdBy->id,         /* @phpstan-ignore-line */
                  'assigned_to_id' => $this->task->assignedTo->id,       /* @phpstan-ignore-line */
         ];
-        $response = $this->actingAs($user)->patch(route('tasks.update', $this->task), $data);   /* @phpstan-ignore-line */
+        $response = $this->actingAs($user)
+                         ->patch(route('tasks.update', $this->task), $data);   /* @phpstan-ignore-line */
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
 

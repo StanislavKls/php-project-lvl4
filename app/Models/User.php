@@ -42,7 +42,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function task(): hasMany
+    public function task(): mixed
     {
         return $this->hasMany(Task::class, 'created_by_id');
     }
