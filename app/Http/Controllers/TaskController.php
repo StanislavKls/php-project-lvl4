@@ -16,7 +16,7 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  use Illuminate\Http\Request  $request
+     * @param  use \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
     public function index(Request $request)
@@ -54,14 +54,14 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\TaskRequest  $request
+     * @param  \App\Http\Requests\TaskRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(TaskRequest $request)
     {
         $data = $request->validated();
         $task = new Task();
-        $data['created_by_id'] = auth()->user()->id;
+        $data['created_by_id'] = auth()->user()->id;    /* @phpstan-ignore-line */
         $task->fill($data);
         $task->save();
         $task->labels()->sync($request->labels);
@@ -91,14 +91,14 @@ class TaskController extends Controller
         $statuses     = TaskStatus::all();
         $users        = User::all();
         $labels       = Label::all();
-        $lablesOfTask = $task->labels->pluck('name');
+        $lablesOfTask = $task->labels->pluck('name');  /* @phpstan-ignore-line */
         return view('tasks.edit', compact('task', 'statuses', 'users', 'labels', 'lablesOfTask'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests\TaskRequest  $request
+     * @param  \App\Http\Requests\TaskRequest  $request
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\RedirectResponse
      */

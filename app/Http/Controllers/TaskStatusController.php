@@ -32,7 +32,7 @@ class TaskStatusController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\TaskStatusesRequest  $request
+     * @param  \App\Http\Requests\TaskStatusesRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(TaskStatusesRequest $request): \Illuminate\Http\RedirectResponse
@@ -59,7 +59,7 @@ class TaskStatusController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests\TaskStatusesRequest  $request
+     * @param  \App\Http\Requests\TaskStatusesRequest  $request
      * @param  \App\Models\TaskStatus  $taskStatus
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -80,7 +80,7 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-        if (count($taskStatus->task) > 0) {
+        if (count($taskStatus->task) > 0) {                     /* @phpstan-ignore-line */
             flash('Не удалось удалить статус')->error();
             return redirect()->route('task_statuses.index');
         }

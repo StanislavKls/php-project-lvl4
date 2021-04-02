@@ -32,7 +32,7 @@
         <input type="hidden" name="created_by_id" value="{{ $task->created_by_id }}">
 
         {{ Form::label('assigned_to_id', 'Исполнитель') }}
-        <select class="form-control"  id="assigned_to_id" name="assigned_to_id"><option selected="selected" value="{{ $task->assignedTo->id }}">{{ $task->assignedTo->name }}</option>
+        <select class="form-control"  id="assigned_to_id" name="assigned_to_id"><option selected="selected" value="{{ $task->assignedTo->id ?? null }}">{{ $task->assignedTo->name ?? null }}</option>
             @foreach ($users as $user)
                 <option value="{{ $user->id }}">{{ $user->name }}</option>
             @endforeach

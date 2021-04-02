@@ -26,11 +26,11 @@ class TaskTest extends TestCase
         $user = User::factory()->create();
         $data = ['name' => 'test1',
         'description' => 'testtest',
-        'status_id' => TaskStatus::first()->id,
+        'status_id' => TaskStatus::first()->id,  /* @phpstan-ignore-line */
         'created_by_id' => $user->id,
         'assigned_to_id' => $user->id
         ];
-        $this->task = new Task();
+        $this->task = new Task();       /* @phpstan-ignore-line */
         $this->task->fill($data);
         $this->task->save();
     }
@@ -49,7 +49,7 @@ class TaskTest extends TestCase
     {
         $user      = User::factory()->create();
         $response  = $this->post(route('task_statuses.store', ['name' => 'test']));
-        $status_id = TaskStatus::first()->id;
+        $status_id = TaskStatus::first()->id;   /* @phpstan-ignore-line */
         $data      = ['name' => 'test2',
                       'description' => 'testtest',
                       'status_id' => $status_id,
@@ -60,14 +60,14 @@ class TaskTest extends TestCase
         $response->assertRedirect();
         $this->assertDatabaseHas('tasks', $data);
     }
-    public function testShow()
+    public function testShow(): void
     {
-        $response = $this->get(route('tasks.show', $this->task->id));
+        $response = $this->get(route('tasks.show', $this->task->id));   /* @phpstan-ignore-line */
         $response->assertOk();
     }
     public function testEdit(): void
     {
-        $response = $this->get(route('tasks.edit', $this->task->id));
+        $response = $this->get(route('tasks.edit', $this->task->id));   /* @phpstan-ignore-line */
         $response->assertOk();
     }
     public function testUpdate(): void
@@ -76,10 +76,10 @@ class TaskTest extends TestCase
         $data = ['name' => 'testNEW',
                  'description' => 'testtest',
                  'status_id' => $this->task->status->id,
-                 'created_by_id' => $this->task->createdBy->id,
-                 'assigned_to_id' => $this->task->assignedTo->id,
+                 'created_by_id' => $this->task->createdBy->id,         /* @phpstan-ignore-line */
+                 'assigned_to_id' => $this->task->assignedTo->id,       /* @phpstan-ignore-line */
         ];
-        $response = $this->actingAs($user)->patch(route('tasks.update', $this->task), $data);
+        $response = $this->actingAs($user)->patch(route('tasks.update', $this->task), $data);   /* @phpstan-ignore-line */
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
 
@@ -88,9 +88,9 @@ class TaskTest extends TestCase
     public function testDestroy(): void
     {
         $user     = User::factory()->create();
-        $response = $this->actingAs($user)->delete(route('tasks.destroy', [$this->task]));
+        $response = $this->actingAs($user)->delete(route('tasks.destroy', [$this->task]));  /* @phpstan-ignore-line */
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
-        $this->assertDatabaseMissing('tasks', ['id' => $this->task->id]);
+        $this->assertDatabaseMissing('tasks', ['id' => $this->task->id]);                   /* @phpstan-ignore-line */
     }
 }

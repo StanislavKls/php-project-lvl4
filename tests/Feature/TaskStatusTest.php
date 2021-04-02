@@ -23,7 +23,7 @@ class TaskStatusTest extends TestCase
         $status->updated_at = now();
         $status->name = 'test';
         $status->save();
-        $this->id = $status->id;
+        $this->id = $status->id; /* @phpstan-ignore-line */
     }
     public function testIndex(): void
     {
@@ -37,7 +37,7 @@ class TaskStatusTest extends TestCase
     }
     public function testEdit(): void
     {
-        $response = $this->get(route('task_statuses.edit', $this->id));
+        $response = $this->get(route('task_statuses.edit', $this->id)); /* @phpstan-ignore-line */
         $response->assertOk();
     }
     public function testStore(): void

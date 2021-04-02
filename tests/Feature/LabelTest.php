@@ -23,7 +23,7 @@ class LabelTest extends TestCase
         $label->updated_at = now();
         $label->name = 'test';
         $label->save();
-        $this->id = $label->id;
+        $this->id = $label->id;   /* @phpstan-ignore-line */
     }
     public function testIndex(): void
     {
@@ -37,7 +37,7 @@ class LabelTest extends TestCase
     }
     public function testEdit(): void
     {
-        $response = $this->get(route('labels.edit', $this->id));
+        $response = $this->get(route('labels.edit', $this->id)); /* @phpstan-ignore-line */
         $response->assertOk();
     }
     public function testStore(): void

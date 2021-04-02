@@ -32,7 +32,7 @@ class LabelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\LabelRequest  $request
+     * @param  \App\Http\Requests\LabelRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(LabelRequest $request)
@@ -59,7 +59,7 @@ class LabelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests\LabelRequest  $request
+     * @param  \App\Http\Requests\LabelRequest  $request
      * @param  \App\Models\Label  $label
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -80,7 +80,7 @@ class LabelController extends Controller
      */
     public function destroy(Label $label)
     {
-        if (count($label->tasks) > 0) {
+        if (count($label->tasks) > 0) {                     /* @phpstan-ignore-line */
             flash('Не удалось удалить метку')->error();
             return redirect()->route('labels.index');
         }
