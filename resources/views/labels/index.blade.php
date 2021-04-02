@@ -24,6 +24,7 @@
             <tr>
                 <th>ID</th>
                 <th>Имя</th>
+                <th>Описание</th>
                 <th>Дата создания</th>
                 @auth
                 <th>Действие</th>
@@ -34,6 +35,7 @@
             <tr>
                 <td>{{ $label->id }}</td>
                 <td>{{ $label->name }}</td>
+                <td>{{ $label->description }}</td>
                 <td>{{ $label->created_at }}</td>
                 @auth
                 <td>

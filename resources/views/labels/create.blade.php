@@ -20,6 +20,8 @@
     <div class="form-group">
     {{ Form::label('name', 'Имя') }}
     {{ Form::text('name', $label->name, ['class' => 'form-control', 'type' => 'text', 'id' => 'name']) }}
+    {{ Form::label('description', 'Описание') }}
+    {{ Form::text('description', $label->description, ['class' => 'form-control', 'type' => 'text', 'id' => 'description']) }}
     </div>
     {{ Form::submit('Создать', ['class' => "btn btn-primary"]) }}
 {{ Form::close() }}

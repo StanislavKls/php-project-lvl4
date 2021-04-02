@@ -25,6 +25,7 @@ class LabelRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:App\Models\Label,name',
+            'description' => 'nullable',
         ];
     }
 }
