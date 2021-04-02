@@ -65,7 +65,7 @@ class TaskController extends Controller
         $task->fill($data);
         $task->save();
         $task->labels()->sync($request->labels);
-        flash('Задача добавлена!')->success();
+        flash('Задача успешно создана')->success();
         return redirect()->route('tasks.index');
     }
 
@@ -108,7 +108,7 @@ class TaskController extends Controller
         $task->fill($data);
         $task->save();
         $task->labels()->sync($request->labels);
-        flash('Задача изменена!')->success();
+        flash('Задача успешно изменена')->success();
         return redirect()->route('tasks.index');
     }
 
@@ -121,7 +121,7 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-        flash('Задача удалена')->success();
+        flash('Задача успешно удалена')->success();
         return redirect()->route('tasks.index');
     }
 }

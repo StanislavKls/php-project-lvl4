@@ -21,6 +21,6 @@
     {{ Form::label('name', 'Имя') }}
     {{ Form::text('name', $label->name, ['class' => 'form-control', 'type' => 'text', 'id' => 'name']) }}
     </div>
-    {{ Form::submit('Сохранить', ['class' => "btn btn-primary"]) }}
+    {{ Form::submit('Обновить', ['class' => "btn btn-primary"]) }}
 {{ Form::close() }}
 @endsection

@@ -20,6 +20,6 @@
     {{ Form::label('name', 'Название') }}
     {{ Form::text('name', $taskStatus->name, ['class' => 'form-control', 'id' => 'name']) }}<br>
     </div>
-    {{ Form::submit('Изменить', ['class' => "btn btn-primary"]) }}
+    {{ Form::submit('Обновить', ['class' => "btn btn-primary"]) }}
 {{ Form::close() }}
 @endsection
