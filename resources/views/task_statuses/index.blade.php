@@ -33,7 +33,7 @@
             <tr>
                 <td>{{ $status->id }}</td>
                 <td>{{ $status->name }}</td>
-                <td>{{ $status->created_at }}</td>
+                <td>{{ $status->created_at->format('d.m.Y') }}</td>
                 @auth
                 <td>
                     <a

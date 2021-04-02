@@ -28,8 +28,6 @@
             <option value="{{ $status->id }}">{{ $status->name }}</option>
         @endforeach
     </select>
-    
-    <input type="hidden" name="created_by_id" value="{{ auth()->user()->id }}">
 
     {{ Form::label('assigned_to_id', 'Исполнитель') }}
     <select class="form-control"  id="assigned_to_id" name="assigned_to_id"><option selected="selected" value="">----------</option>

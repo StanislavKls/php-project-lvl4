@@ -28,7 +28,6 @@ class TaskRequest extends FormRequest
             'description' => 'nullable',
             'status_id' => 'required',
             'assigned_to_id' => 'nullable',
-            'created_by_id' => 'required',
         ];
     }
     public function messages()

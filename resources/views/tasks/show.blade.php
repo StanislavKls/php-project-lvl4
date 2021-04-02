@@ -14,7 +14,7 @@
                 <td>Имя</td> <td>{{ $task->name }}</td> 
             </tr>
             <tr>
-                <td>Дата создания</td><td>{{ $task->created_at }}</td>
+                <td>Дата создания</td><td>{{ $task->created_at->format('d.m.Y') }}</td>
             </tr>
             <tr>
                 <td>Автор</td><td>{{ $task->createdBy->name }}</td>
