@@ -8,3 +8,8 @@
 [![Actions Status](https://github.com/StanislavKls/php-project-lvl4/workflows/my-check/badge.svg)](https://github.com/StanislavKls/php-project-lvl4/actions)
 
 <a href="https://tranquil-crag-88647.herokuapp.com/">Project on HEROKU</a>
+
+<p>
+<strong> Описание </strong> <br>
+Task Manager – система управления задачами, подобная http://www.redmine.org/. Она позволяет ставить задачи, назначать исполнителей и менять их статусы. Для работы с системой требуется регистрация и аутентификация.
+</p>
