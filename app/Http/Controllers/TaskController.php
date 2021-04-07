@@ -34,14 +34,7 @@ class TaskController extends Controller
                         AllowedFilter::exact('assigned_to_id'),
                     ])
                     ->get();
-        return view('tasks.index', compact(
-                                            'tasks',
-                                            'statuses',
-                                            'users',
-                                            'currentStatus',
-                                            'currentCreated',
-                                            'currentAssigned'
-                                        ));
+        return view('tasks.index', compact('tasks', 'statuses', 'users', 'currentStatus', 'currentCreated', 'currentAssigned'));
     }
 
     /**
