@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Создать статус')
+@section('title', 'Редактирование статуса')
 
 @section('content')
 @if ($errors->any())
